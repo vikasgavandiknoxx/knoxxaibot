@@ -28,6 +28,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 // === Middleware ===
 // app.use(cors({
 //     origin: [
@@ -309,8 +311,12 @@ function formatTimestampForMySQL(isoDate) {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
-app.get('/api', (req, res) => {
-  res.send('Hello from Knoxxbot!');
+// app.get('/api', (req, res) => {
+//   res.send('Hello from Knoxxbot!');
+// });
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // === Health Check Endpoint ===

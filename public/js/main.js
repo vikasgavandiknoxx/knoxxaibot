@@ -160,7 +160,7 @@ function saveUserToServer() {
     
     // Add to request queue instead of executing immediately
     addToRequestQueue(() => {
-        return fetch('https://170.64.228.217/api/set-user', {
+        return fetch('/api/set-user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -225,7 +225,7 @@ function loadChatHistory() {
     
     // Add to request queue instead of executing immediately
     addToRequestQueue(() => {
-        return fetch(`https://170.64.228.217/api/user/chats?sessionId=${sessionId}`, {
+        return fetch(`/api/user/chats?sessionId=${sessionId}`, {
             credentials: 'include' // Include cookies for cross-domain requests
         })
             .then(response => response.json())
@@ -281,7 +281,7 @@ function sendInitialMessage() {
         showTypingIndicator();
 
         // Fix: Use consistent protocol and hostname for all endpoints
-        return fetch('https://170.64.228.217/api/chat/init', {
+        return fetch('/api/chat/init', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -463,7 +463,7 @@ function sendMessage() {
         // Show typing indicator
         showTypingIndicator();
         
-        return fetch('https://170.64.228.217/api/chat', {
+        return fetch('/api/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
