@@ -43,6 +43,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 //     ],
 //     credentials: true
 // }));
+
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "frame-ancestors 'self' https://www.knoxxfoods.com");
+  next();
+});
+
 app.use(cors());
 
 // trust first proxy
