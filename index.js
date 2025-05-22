@@ -19,7 +19,7 @@ const rules = require('./rules');
 // Create Express app
 const app = express();
 const port = 3002;
-
+const PORT = process.env.PORT || 3002;
 const allowedWixDomain = 'https://www.knoxxfoods.com/';
 
 app.use((req, res, next) => {
@@ -339,7 +339,7 @@ app.get('/', (req, res) => {
 //     });
 // });
 
-app.get('/api/health', (req, res) => {
+app.get('/health', (req, res) => {
   res.status(200).json({status: 'healthy (forced)'});
 });
 
