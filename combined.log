@@ -3809,3 +3809,8 @@
 {"level":"info","message":"MySQL connected","timestamp":"2025-05-22T16:44:17.322Z"}
 {"level":"info","message":"DOCX file exists at /Users/vikasgavandi/Documents/GitHub/knoxxaibot/knoxxfoods_kb.docx","timestamp":"2025-05-22T16:44:17.322Z"}
 {"contentLength":23309,"contentPreview":"\n\nKnoxx Foods – Reliable Food Ingredient Supplier in Australia\n\nWebsite: https://www.knoxxfoods.com/...","level":"info","message":"DOCX loaded successfully","timestamp":"2025-05-22T16:44:17.360Z"}
+{"level":"error","message":"OpenAI API key is missing in environment variables","timestamp":"2025-05-22T16:45:05.478Z"}
+{"level":"warn","message":"Google Gemini API key is missing","timestamp":"2025-05-22T16:45:05.479Z"}
+{"level":"info","message":"MySQL connected","timestamp":"2025-05-22T16:45:05.481Z"}
+{"level":"info","message":"DOCX file exists at /Users/vikasgavandi/Documents/GitHub/knoxxaibot/knoxxfoods_kb.docx","timestamp":"2025-05-22T16:45:05.481Z"}
+{"contentLength":23309,"contentPreview":"\n\nKnoxx Foods – Reliable Food Ingredient Supplier in Australia\n\nWebsite: https://www.knoxxfoods.com/...","level":"info","message":"DOCX loaded successfully","timestamp":"2025-05-22T16:45:05.522Z"}

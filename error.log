@@ -409,3 +409,4 @@
 {"error":"Error: Access denied for user 'phpuser'@'localhost' (using password: NO)\n    at PromisePool.execute (/var/www/knoxxaibot_v1/node_modules/mysql2/lib/promise/pool.js:54:22)\n    at /var/www/knoxxaibot_v1/server.js:368:19\n    at /var/www/knoxxaibot_v1/node_modules/session-file-store/lib/session-file-helpers.js:231:33","level":"error","message":"User save error","timestamp":"2025-05-20T18:30:04.609Z"}
 {"level":"error","message":"OpenAI API key is missing in environment variables","timestamp":"2025-05-22T16:41:48.319Z"}
 {"level":"error","message":"OpenAI API key is missing in environment variables","timestamp":"2025-05-22T16:44:17.318Z"}
+{"level":"error","message":"OpenAI API key is missing in environment variables","timestamp":"2025-05-22T16:45:05.478Z"}
