@@ -73,7 +73,7 @@ app.use((req, res, next) => {
   next();
 });
 
-console.info(rules);
+// console.info(rules);
 
 // === Logger ===
 const logger = winston.createLogger({
