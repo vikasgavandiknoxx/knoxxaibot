@@ -1,0 +1,33 @@
+{
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "express-session": "^1.18.1",
+    "express-validator": "^7.2.1",
+    "form-data-encoder": "^4.0.2",
+    "install": "^0.13.0",
+    "mammoth": "^1.9.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.14.1",
+    "nodemon": "^3.1.10",
+    "npm": "^11.3.0",
+    "openai": "^4.98.0",
+    "session-file-store": "^1.5.0",
+    "tmux": "^1.0.0",
+    "winston": "^3.17.0"
+  },
+  "name": "knoxxaibot_v1",
+  "version": "1.0.0",
+  "description": "ai chatbot ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Vikas Shakuntala B. Gavandi",
+  "license": "MIT "
+}

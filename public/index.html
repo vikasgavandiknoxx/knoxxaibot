@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knoxx Foods AI Assistant</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <style>
+    /* Added styles for reset and minimize buttons */
+    @import url('https://fonts.googleapis.com/css2?family=Boldonse&display=swap');
+    
+
+    .chat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-header .buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .chat-header .buttons button {
+      /* background-color: #ed1d23; */
+      border: none;
+      /* color: white; */
+      padding: 10px 13px;
+      cursor: pointer;
+      border-radius: 23px;
+      font-size: 14px;
+    }
+
+    .chat-header .buttons button:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.3),
+          /* light blue */
+          rgba(237, 28, 36, 0.3)
+          /* light red */
+        );
+    }
+
+    
+    .chat-container.minimized {
+      height: 70px;
+      width: 200px;
+      transition: height 0.3s ease, width 0.3s ease;
+      overflow: hidden;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+    }
+
+    /* Regular chat container transition */
+    .chat-container {
+      transition: height 0.3s ease, width 0.3s ease;
+    }
+
+    /* Hide elements when minimized */
+    .chat-container.minimized #chatMessages,
+    .chat-container.minimized #chatInput,
+    .chat-container.minimized #userTypeSelector,
+    .chat-container.minimized #welcomeScreen {
+      display: none !important;
+    }
+
+    /* Adjust logo when minimized */
+    .chat-container.minimized .logo-container h4 {
+      display: none;
+    }
+
+    .chat-container.minimized .logo {
+      width: 30px;
+      height: 30px;
+    }
+
+    .welcome-screen {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      padding: 30px;
+      /* background-color: #f7f7f7; */
+      border-radius: 10px;
+      /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+      max-width: 500px;
+    }
+
+    .welcome-screen h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .welcome-screen p {
+      font-size: 12px;
+      margin-bottom: 20px;
+      margin-top: 20px;
+      color: red;
+    }
+
+    .welcome-screen button {
+      padding: 10px 80px;
+       
+        background: #ff0000;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 32px;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(8px);
+      /* box-shadow: 0px 1px 20px rgb(0 0 0 / 10%); */
+      transition: all 0.3s ease;
+    }
+
+    .welcome-screen button:hover {
+      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.05);
+      color: #ff0000;
+    }
+
+    .logo {
+      mix-blend-mode: screen;
+      /* width: 100%; */
+      /* border-radius: 40px; */
+      height: auto;
+      display: block;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: #ffffff;
+    }
+
+    #messageInput {
+      color: #ffffff;
+    }
+    
+    /* Message animation */
+    .message {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeIn 0.3s forwards;
+    }
+    
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Improved typing indicator */
+    .typing-indicator {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      padding: 10px 15px;
+      border-radius: 18px;
+      background-color: rgba(255, 255, 255, 0.1);
+      width: fit-content;
+    }
+    
+    .typing-indicator::after {
+      content: "...";
+      animation: ellipsis 1.5s infinite;
+    }
+    
+    @keyframes ellipsis {
+      0% { content: "."; }
+      33% { content: ".."; }
+      66% { content: "..."; }
+    }
+
+    @keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.avatar.floating {
+  animation: float 3s ease-in-out infinite;
+   transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.avatar.floating:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+
+  </style>
+</head>
+
+<body>
+
+  <div class="chat-container">
+    <div class="chat-header">
+      <div class="logo-container">
+        <img src="./images/voice_assistant_01.gif" alt="Knoxx Foods Logo" class="logo">
+        <h4 style="font-family: 'Boldonse', system-ui; color: #5c5c5c;">KOOKA</h4>
+      </div>
+
+      <div class="buttons">
+        <!-- Minimize Button with Icon -->
+        <button id="toggleChatBtn" title="Minimize Chat">
+          <i class="fas fa-minus"></i>
+        </button>
+
+        <!-- Reset Button with Icon -->
+        <button id="resetChatBtn" title="Reset Chat">
+          <i class="fas fa-sync-alt"></i> <!-- Reset icon from Font Awesome -->
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="welcome-screen">
+      <img src="./images/bot_avatar1.png" alt="Kooka Ai Assistant" class="avatar floating" style="width: 280px;">
+
+      <!-- <h2 style="font-size: 22px; font-weight: 500; color: #fff; line-height: 21px;">
+        Hi, I am <span style="color:#ed1d23; font-size: 24px; font-weight: 700; font-weight: 700;">Kooka</span>, your AI assistant.
+      </h2>
+       -->
+      <p style="color: #ffffff;">Let's get started!</p>
+      <button id="proceedToRoleBtn">Continue</button>
+    </div>
+
+    <!-- User Type Selection - Only shown in first interaction -->
+    <div id="userTypeSelector" class="user-type-selector">
+      <h3>Welcome to KnoxxFoods</h3>
+      <p>Please select your role:</p>
+      <div class="button-group">
+        <button id="clientBtn" data-type="manufacturer">Manufacturer</button>
+        <button id="distributorBtn" data-type="distributor">Distributor</button>
+        <button id="chefBtn" data-type="chef/npd/food">Chef/NPD/Food</button>
+        <button id="jobseekerBtn" data-type="jobseeker">Jobseeker</button>
+        <button id="visitorBtn" data-type="visitor">Visitor</button>
+      </div>
+    </div>
+
+    <div id="chatMessages" class="chat-messages hidden">
+      <!-- Messages will be added here -->
+    </div>
+
+    <div id="chatInput" class="chat-input hidden">
+      <textarea id="messageInput" placeholder="Type your message..." rows="1"
+        style="color: white; font-size: 12px;"></textarea>
+
+      <button id="sendMessageBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+
+   <button id="sendMessageBtn" title="Send Voice Message">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 1v11a3 3 0 0 1-6 0V1a3 3 0 0 1 6 0z"></path>
+    <path d="M19 10v1a7 7 0 0 1-14 0v-1"></path>
+    <line x1="12" y1="19" x2="12" y2="23"></line>
+    <line x1="8" y1="23" x2="16" y2="23"></line>
+  </svg>
+</button>
+
+
+    </div>
+  </div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+      // Get elements
+      const chatContainer = document.querySelector('.chat-container');
+      const toggleBtn = document.getElementById('toggleChatBtn');
+
+      // Store original dimensions
+      let originalHeight = '';
+      let originalWidth = '';
+
+      // Get computed style
+      const computedStyle = window.getComputedStyle(chatContainer);
+      originalHeight = computedStyle.height;
+      originalWidth = computedStyle.width;
+
+      // Toggle minimize/maximize
+      toggleBtn.addEventListener('click', () => {
+        chatContainer.classList.toggle('minimized');
+
+        const icon = toggleBtn.querySelector('i');
+        if (chatContainer.classList.contains('minimized')) {
+          // Change to maximize icon
+          icon.classList.remove('fa-minus');
+          icon.classList.add('fa-expand');
+          toggleBtn.title = "Maximize Chat";
+        } else {
+          // Change to minimize icon
+          icon.classList.remove('fa-expand');
+          icon.classList.add('fa-minus');
+          toggleBtn.title = "Minimize Chat";
+
+          // Restore original dimensions
+          if (originalHeight && originalWidth) {
+            chatContainer.style.height = originalHeight;
+            chatContainer.style.width = originalWidth;
+          }
+        }
+      });
+    });
+
+  </script>
+
+  <script src="./js/main.js"></script>
+</body>
+
+</html>
