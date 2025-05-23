@@ -14,7 +14,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover; 
   /* background-color: rgb(255, 255, 255); */
-   background-image: url("https://images.pexels.com/photos/13138870/pexels-photo-13138870.jpeg");
+   /* background-image: url("https://images.pexels.com/photos/13138870/pexels-photo-13138870.jpeg"); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,7 +45,7 @@ body {
 .chat-header {
   /* background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.16)); */
   /* color: white; */
-  padding: 15px;
+  padding: 10px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -69,7 +69,7 @@ body {
 
 /* User Type Selector */
 .user-type-selector {
-  padding: 20px;
+  padding: 30px;
   /* background-color: #f9f9f9; */
   text-align: center;
   padding-top: 50px;
@@ -243,11 +243,14 @@ body {
 }
 
 .message.bot .message-content {
-  background: rgba(255, 255, 255, 0.882);
+  /* background: rgba(255, 255, 255, 0.882); */
+  background: linear-gradient(360deg, rgba(255, 255, 255, .5), rgba(255, 255, 255, 5));
+    backdrop-filter: blur(50px);
+  
   /* translucent white */
   color: #5c5c5c;
   border-top-left-radius: 4px;
-  backdrop-filter: blur(6px);
+  
   -webkit-backdrop-filter: blur(6px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);

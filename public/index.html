@@ -44,8 +44,8 @@
 
     
     .chat-container.minimized {
-      height: 70px;
-      width: 200px;
+      height: 60px;
+      width: 18%;
       transition: height 0.3s ease, width 0.3s ease;
       overflow: hidden;
       position: fixed;
@@ -230,7 +230,7 @@
  
       <p>I can help you with ingredients, recipes, yield tips, or anything food innovation related.</p>
       <button id="proceedToRoleBtn" style="display: flex; align-items: center; justify-content: center; width: 100%;
-    height: 2rem;"> 
+    height: 2.4rem;"> 
         <span>Let's explore</span>
         </button>
         
@@ -275,47 +275,66 @@
   </div>
 
 <script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Get elements
+  const chatContainer = document.querySelector('.chat-container');
+  const toggleBtn = document.getElementById('toggleChatBtn');
+  const resetBtn = document.getElementById('resetChatBtn');
+  const welcomeScreen = document.getElementById('welcomeScreen');
+  const userTypeSelector = document.getElementById('userTypeSelector');
+  const chatMessages = document.getElementById('chatMessages');
+  const chatInput = document.getElementById('chatInput');
+  const proceedBtn = document.getElementById('proceedToRoleBtn');
 
-    document.addEventListener('DOMContentLoaded', function () {
-      // Get elements
-      const chatContainer = document.querySelector('.chat-container');
-      const toggleBtn = document.getElementById('toggleChatBtn');
+  // Initialize state
+  let isMinimized = false;
 
-      // Store original dimensions
-      let originalHeight = '';
-      let originalWidth = '';
+  // Toggle minimize/maximize functionality
+  toggleBtn.addEventListener('click', () => {
+    isMinimized = !isMinimized;
+    
+    if (isMinimized) {
+      // Minimize the chat
+      chatContainer.classList.add('minimized');
+      const icon = toggleBtn.querySelector('i');
+      icon.classList.remove('fa-minus');
+      icon.classList.add('fa-expand');
+      toggleBtn.title = "Maximize Chat";
+    } else {
+      // Maximize the chat
+      chatContainer.classList.remove('minimized');
+      const icon = toggleBtn.querySelector('i');
+      icon.classList.remove('fa-expand');
+      icon.classList.add('fa-minus');
+      toggleBtn.title = "Minimize Chat";
+    }
+  });
 
-      // Get computed style
-      const computedStyle = window.getComputedStyle(chatContainer);
-      originalHeight = computedStyle.height;
-      originalWidth = computedStyle.width;
+  // Reset chat functionality
+  resetBtn.addEventListener('click', () => {
+    // Reset to welcome screen
+    welcomeScreen.style.display = 'block';
+    userTypeSelector.style.display = 'none';
+    chatMessages.classList.add('hidden');
+    chatInput.classList.add('hidden');
+    
+    // Clear messages
+    chatMessages.innerHTML = '';
+    
+    // Reset minimize state
+    if (isMinimized) {
+      isMinimized = false;
+      chatContainer.classList.remove('minimized');
+      const icon = toggleBtn.querySelector('i');
+      icon.classList.remove('fa-expand');
+      icon.classList.add('fa-minus');
+      toggleBtn.title = "Minimize Chat";
+    }
+  });
 
-      // Toggle minimize/maximize
-      toggleBtn.addEventListener('click', () => {
-        chatContainer.classList.toggle('minimized');
-
-        const icon = toggleBtn.querySelector('i');
-        if (chatContainer.classList.contains('minimized')) {
-          // Change to maximize icon
-          icon.classList.remove('fa-minus');
-          icon.classList.add('fa-expand');
-          toggleBtn.title = "Maximize Chat";
-        } else {
-          // Change to minimize icon
-          icon.classList.remove('fa-expand');
-          icon.classList.add('fa-minus');
-          toggleBtn.title = "Minimize Chat";
-
-          // Restore original dimensions
-          if (originalHeight && originalWidth) {
-            chatContainer.style.height = originalHeight;
-            chatContainer.style.width = originalWidth;
-          }
-        }
-      });
-    });
-
-  </script>
+  // Add other functionality as needed...
+});
+</script>
 
   <script src="./js/main.js"></script>
 </body>
