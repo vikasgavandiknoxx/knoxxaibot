@@ -12,7 +12,7 @@ body {
   /* background-image: url('https://images.unsplash.com/photo-1706523869978-e084f4658729?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); */
   background-repeat: no-repeat;
   background-size: cover; 
-  /* background-color: #f7f7f7; */
+  background-color: rgb(255, 176, 176);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,10 +22,10 @@ body {
 
 /* Chat Container */
 .chat-container {
-  width: 400px;
-  height: 600px;
+  width: 350px;
+  height: 530px;
   border-radius: 30px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 80), rgba(255, 255, 255, 0.16));
+  background: linear-gradient(360deg, rgba(255, 255, 255, .65), rgba(255, 255, 255, .35));
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -95,7 +95,7 @@ body {
   flex: 1;
   padding: 10px 20px;
   background: linear-gradient(135deg, rgba(0, 123, 255, 0.3), rgba(237, 28, 36, 0.1));
-  color: white;
+  color: #646464;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 32px;
   cursor: pointer;
@@ -271,8 +271,8 @@ body {
 }
 
 .chat-input textarea {
-  background: linear-gradient(135deg, rgba(0, 123, 255, 0.3), rgba(255, 255, 255, 0.3));
-  color: white;
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.3), rgba(237, 28, 36, 0.1));
+  color: rgb(52, 52, 52);
   flex-grow: 1;
   padding: 12px 15px;
   border: 1px solid rgba(250, 250, 250, 0.2); /* more consistent with glass style */
@@ -296,8 +296,8 @@ body {
 
 .chat-input button {
   /* background-color: #ffffff45; */
-  background-color: #10000045;
-
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.3), rgba(237, 28, 36, 0.1));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* more defined shadow */
   color: white;
   border: rgb(226, 7, 7);
   border-radius: 50%;
@@ -358,18 +358,21 @@ body {
 }
 
 /* Responsive styles */
-@media (max-width: 480px) {
+@media (max-width: 400px) {
   .chat-container {
     width: 100%;
     height: 100vh;
     border-radius: 0;
-    background: rgba(255, 255, 255, 0.1);
+    /* background: rgba(255, 255, 255, 0.1); */
+  background: linear-gradient(360deg, rgba(255, 255, 255, .65), rgba(255, 255, 255, .35));
+
     /* Slight tweak for mobile */
     box-shadow: none;
     /* Optional: reduce shadow on mobile */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: none;
+    border-radius: 20px;
   }
 
   body {
