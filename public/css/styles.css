@@ -12,7 +12,7 @@ body {
   /* background-image: url('https://images.unsplash.com/photo-1706523869978-e084f4658729?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); */
   background-repeat: no-repeat;
   background-size: cover; 
-  background-color: rgb(255, 176, 176);
+  /* background-color: rgb(255, 176, 176); */
   display: flex;
   justify-content: center;
   align-items: center;
