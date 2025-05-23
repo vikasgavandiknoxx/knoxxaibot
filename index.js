@@ -15,6 +15,7 @@ const rateLimit = require('express-rate-limit');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const rules = require('./rules');
+const helmet = require('helmet');
 
 // Create Express app
 const app = express();
@@ -27,6 +28,8 @@ app.use((req, res, next) => {
   res.setHeader('Content-Security-Policy', `frame-ancestors 'self' ${allowedWixDomain}`);
   next();
 });
+
+app.use(helmet());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -129,7 +132,7 @@ let db;
 let docContent = '';
 const docPath = path.join(__dirname, 'knoxxfoods_kb.docx');
 
-console.info(`Loading DOCX file from ${docPath}`);
+// console.info(`Loading DOCX file from ${docPath}`);
 
 (async () => {
     try {

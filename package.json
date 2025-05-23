@@ -9,6 +9,7 @@
     "express-session": "^1.18.1",
     "express-validator": "^7.2.1",
     "form-data-encoder": "^4.0.2",
+    "helmet": "^8.1.0",
     "install": "^0.13.0",
     "mammoth": "^1.9.0",
     "morgan": "^1.10.0",
