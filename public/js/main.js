@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Functions
     function checkExistingSession() {
         const savedSession = localStorage.getItem('knoxxChatSession');
-        console.log("Checking saved session...");
+        // console.log("Checking saved session...");
 
         if (savedSession) {
             try {
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 currentUser = sessionData.user;
                 sessionId = sessionData.sessionId;
 
-                console.log("Found existing session: ", sessionData);
+                // console.log("Found existing session: ", sessionData);
                 // Make sure welcome screen is hidden for returning users
                 welcomeScreen.style.display = 'none';
                 
@@ -177,7 +177,7 @@ function saveUserToServer() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('User saved:', data);
+            // console.log('User saved:', data);
             // Save to local storage
             localStorage.setItem('knoxxChatSession', JSON.stringify({
                 user: currentUser,
@@ -194,7 +194,7 @@ function saveUserToServer() {
 
     function generateSessionId() {
         const sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-        console.log("Generated session ID: ", sessionId);
+        // console.log("Generated session ID: ", sessionId);
         return sessionId;
     }
 
@@ -221,7 +221,7 @@ function saveUserToServer() {
 
     // Fix: Update the loadChatHistory function to use the same domain
 function loadChatHistory() {
-    console.log("Loading chat history for sessionId: ", sessionId);
+    // console.log("Loading chat history for sessionId: ", sessionId);
     
     // Add to request queue instead of executing immediately
     addToRequestQueue(() => {
@@ -231,7 +231,7 @@ function loadChatHistory() {
             .then(response => response.json())
             .then(data => {
                 if (data.chats && data.chats.length > 0) {
-                    console.log("Chat history found:", data.chats.length, "messages");
+                    // console.log("Chat history found:", data.chats.length, "messages");
                     data.chats.forEach(msg => {
                         addMessage(msg.sender, msg.content, msg.timestamp);
                     });
