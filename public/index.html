@@ -95,14 +95,14 @@
     }
 
     .welcome-screen p {
-      font-size: 14px;
-      margin-bottom: 20px;
-      margin-top: 10px;
+      font-size: 12px;
+      margin-bottom: 10px;
+      
       color: rgb(40, 40, 40);
     }
 
     .welcome-screen button {
-      padding: 10px 80px;
+      /* padding: 10px 80px; */
        
         background: #ff0000;
       color: white;
@@ -225,11 +225,16 @@
 
     <!-- Welcome Screen -->
     <div id="welcomeScreen" class="welcome-screen">
-      <img src="./images/bubble.png" alt="Kooka Ai Assistant" class="avatar floating" style="width: 185px;">
-      <img src="./images/bot_avatar1.gif" alt="Kooka Ai Assistant" class="avatar floating" style="width: 210px;">
+      <img src="./images/bubble.png" alt="Kooka Ai Assistant" class="avatar floating" style="width: 205px;">
+      <img src="./images/bot_avatar1.gif" alt="Kooka Ai Assistant" class="avatar floating" style="width: 185px;">
  
       <p>I can help you with ingredients, recipes, yield tips, or anything food innovation related.</p>
-      <button id="proceedToRoleBtn" style="width: 100%;"> Let's explore</button>
+      <button id="proceedToRoleBtn" style="display: flex; align-items: center; justify-content: center; width: 100%;
+    height: 2rem;"> 
+        <span>Let's explore</span>
+        </button>
+        
+
     </div>
 
     <!-- User Type Selection - Only shown in first interaction -->
